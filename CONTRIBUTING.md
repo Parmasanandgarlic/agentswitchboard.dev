@@ -88,6 +88,15 @@ must be keyless or trivially obtainable and return real data at useful scale.
 Data a provider computes itself is first-party, not aggregation, and this rule
 does not apply to it.
 
+**4. No competing directories.** We do not list catalogs, directories, plugin
+indexes or listing services whose product is an index of other people's tools —
+including ones that reach the catalog as a well-built MCP server. The agent
+asking us a question is already in a directory; routing it into a rival index
+is not an answer, and reciprocal indexing turns curation into link trading.
+This is a flat no, not a quality judgement: a competing directory can be
+excellently built and still be declined. (Link exchanges and guest-post swaps
+are declined under the same principle.)
+
 Vendors submitting their own product: set `"verified": false` — maintainers
 verify before merge and flip it. **Verified** means we checked it works: your URLs
 load, you declare an access method, and any linked GitHub repo is live (not
