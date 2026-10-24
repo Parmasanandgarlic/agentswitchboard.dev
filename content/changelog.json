@@ -1,6 +1,335 @@
 [
   {
     "action": "added",
+    "slug": "ai-for-database",
+    "name": "AI for Database",
+    "note": "Queries PostgreSQL, MySQL, MongoDB and SQL Server in plain English via a scoped REST API and OAuth-gated remot",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "xquik",
+    "name": "Xquik",
+    "note": "Search X (Twitter) posts, profiles and followers, run keyword and account monitors, and post or manage connect",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "mangatranslate",
+    "name": "MangaTranslate",
+    "note": "Translates manga pages and PDFs through a credit-metered REST API: OCR, text removal, background repair and ty",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "aidata-broker",
+    "name": "AIData.Broker",
+    "note": "Queries published AI training-data prices, market rates, buyers, licensing deals and court rulings, and values",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "herohunt-ai",
+    "name": "HeroHunt.ai",
+    "note": "Searches and enriches public talent profiles across GitHub, StackOverflow and the web through a natural-langua",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "flexqueries",
+    "name": "FlexQueries",
+    "note": "Research keywords, SERPs, backlinks, competitors, rankings, site audits and AI visibility via a hosted OAuth M",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "crontinel",
+    "name": "Crontinel",
+    "note": "Monitors cron, queue, and Horizon jobs via HTTP outcome receipts that flag runs exiting 0 without doing work, ",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "zovo-invoice-mcp",
+    "name": "Zovo Invoice MCP",
+    "note": "Creates numbered line-item invoices with multi-rate VAT, renders them as downloadable documents, and tracks cl",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "whooshly",
+    "name": "Whooshly",
+    "note": "Creates short links, dynamic QR codes, UTM templates, vCards and landing pages, and reads click and scan analy",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "sniffington",
+    "name": "Sniffington",
+    "note": "Monitors brand mentions across Reddit, X, LinkedIn and other platforms. Exposes mentions, briefs, analytics an",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "superagnt",
+    "name": "superagnt_",
+    "note": "Connects agents to social, web, SEO and lead-enrichment data across 10 platforms and 262 REST endpoints, reach",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "praesidia",
+    "name": "Praesidia",
+    "note": "Govern AI agent and MCP server access with runtime policy, approvals, guardrails and a signed audit trail, thr",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "hourtick",
+    "name": "Hourtick",
+    "note": "Tracks billable time, tasks and team chat for people and AI agents via an OAuth-gated MCP server and an OpenAP",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "zeroshot",
+    "name": "Zeroshot",
+    "note": "Runs coding agents through a configurable graph of implementation, independent review and bounded repair, with",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "polyphemus",
+    "name": "Polyphemus (Eye.Art)",
+    "note": "Generates and edits images, icons, and editable SVG from natural language or page code (HTML/CSS/JSX/TSX) via ",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "fungsi-id-mcp",
+    "name": "Fungsi.id MCP",
+    "note": "Search Indonesian job listings, company profiles, and city, province, category and job-type metadata through e",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "swarmmemo",
+    "name": "SwarmMemo",
+    "note": "Post and read public agent messages, send private DMs, and create or claim paid tasks over a keyless MCP endpo",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "robylon",
+    "name": "Robylon",
+    "note": "Handles customer support across chat, email, WhatsApp, tickets and voice; exposes a REST API for workflow and ",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "cosvoice",
+    "name": "CosVoice",
+    "note": "Provisions a dedicated US phone number and email address for an AI agent over MCP: place and answer calls, sen",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "vidmoat",
+    "name": "Vidmoat",
+    "note": "Edits video programmatically from agents over a remote MCP server and a REST v1 API: import media, run timelin",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "fleeting-chat",
+    "name": "fleeting.chat",
+    "note": "Opens ephemeral HTTP rooms for agent-to-agent messaging: reserve a 9-digit channel, bind 2-8 seats with ED2551",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "skaleagents",
+    "name": "SkaleAgents",
+    "note": "Scans Terraform, CloudFormation, Kubernetes and Pulumi IaC plus CI files and Dockerfiles for misconfigurations",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "nolizi-calendar",
+    "name": "Nolizi Calendar",
+    "note": "Books meetings through a hosted MCP server and owner-authenticated REST API: list event types, check live avai",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "geoloods",
+    "name": "Geoloods",
+    "note": "Resolves named places (cities, towns, villages, parks, landmarks) to coordinates plus country, timezone and po",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "agentcouch",
+    "name": "AgentCouch",
+    "note": "Connects agents across owners, clients, and machines through hosted MCP rooms with persistent, account-attribu",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "taskfolk",
+    "name": "Taskfolk",
+    "note": "Tracks projects, issues, sprints, and docs over a 198-operation REST API and a hosted MCP server, letting AI a",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "clipmyapp",
+    "name": "ClipMyApp",
+    "note": "Turns app screen recordings into short videos, memes, and carousels; MCP server and REST API let assistants cr",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "revdoku",
+    "name": "Revdoku",
+    "note": "Gives AI agents their own email addresses with per-mailbox file storage: receive mail and attachments, send re",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "rival-ads",
+    "name": "Rival Ads",
+    "note": "Tracks competitors’ ads on Meta, Google, TikTok and LinkedIn from public ad libraries, and exposes monitors, a",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "neurakeep",
+    "name": "NeuraKeep",
+    "note": "Stores source-cited agent memory with review-gated updates and failure history; exposes search/read/propose to",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "unquant",
+    "name": "Unquant",
+    "note": "Serves delayed and end-of-day market data, company fundamentals, analyst ratings, financial news, US macro ind",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "menlo-insurance-mcp",
+    "name": "Menlo Insurance MCP",
+    "note": "Lists Menlo property and casualty insurance products and quote links over MCP without auth, then continues one",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "northstar-trustrail-acceptance-checker",
+    "name": "northstar-trustrail Acceptance Checker",
+    "note": "Checks two OpenAPI 3.0 specs for breaking changes, flagging removed paths, newly required parameters and type ",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "clify",
+    "name": "Clify",
+    "note": "Calls 135 public websites — package registries, weather, transit, government and science data — as typed JSON ",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "vellm-mcp",
+    "name": "Vellm MCP",
+    "note": "Generates short videos from user photos via a remote OAuth MCP server: named TikTok/Reels template routines, i",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "founden",
+    "name": "Founden",
+    "note": "Builds and deploys a running company from a plain-language prompt — website, user app with sign-in, and back o",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "pragor",
+    "name": "Pragor",
+    "note": "Coordinate human and AI-agent teams on a shared project board with tasks, messages, approvals, and an audit tr",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "geardex",
+    "name": "GearDex",
+    "note": "Tracks camera gear inventory, shoot plans, maintenance and lending for photographers, with a scoped Studio RES",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "artifact-council",
+    "name": "Artifact Council",
+    "note": "Hosts councils of AI agents that propose, vote on and revise shared text documents over a keyless REST API, re",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "placement-api",
+    "name": "Placement API",
+    "note": "Search, compare and buy SEO link placements across 10 supplier marketplaces via one API or MCP, with independe",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "openagentforum",
+    "name": "OpenAgentForum",
+    "note": "Coordinates autonomous agents over an Ed25519-signed message protocol: public channels, encrypted DMs, task bo",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "hol-guard",
+    "name": "HOL Guard",
+    "note": "Blocks risky AI coding agent actions at runtime on your machine — shell commands, secret access, MCP servers, ",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "one-workrr",
+    "name": "ONE",
+    "note": "Connects autonomous agents via a public commons: claim an Ed25519-signed handle, find specialists, post questi",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "agent-utilities",
+    "name": "Agent Utilities",
+    "note": "Validate and reshape supplied HTML, JSON and shopping data with 60+ deterministic tools: GTIN check digits, wh",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "aamarva",
+    "name": "AAMARVA",
+    "note": "Manage AI agent identities, MCP server and tool assignments, IP access policies, fleet activity, and end-to-en",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "ilook",
+    "name": "iLook",
+    "note": "Scores user-submitted face photos over REST and MCP, returning face shape, facial symmetry, Golden Ratio phi, ",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "aitraining-jobs",
+    "name": "AITraining.jobs",
+    "note": "Searches open AI-training jobs — trainers, RLHF evaluators, annotators, domain experts — collected hourly from",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
     "slug": "arvow",
     "name": "Arvow",
     "note": "AI SEO agents — REST API (OpenAPI 3.1) + OAuth-gated MCP.",
