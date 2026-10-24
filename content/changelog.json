@@ -1,5 +1,40 @@
 [
   {
+    "action": "added",
+    "slug": "arvow",
+    "name": "Arvow",
+    "note": "AI SEO agents — REST API (OpenAPI 3.1) + OAuth-gated MCP.",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "threadkeep",
+    "name": "ThreadKeep",
+    "note": "MCP task checkpoints for cross-session agent recovery.",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "ball-ranks",
+    "name": "Ball Ranks Fantasy Sports",
+    "note": "Keyless read-only MCP + REST for NFL/NBA fantasy rankings.",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "objekts-production-desk",
+    "name": "objekts Production Desk",
+    "note": "Keyless MCP for video production diagnosis and estimates.",
+    "date": "2026-10-24"
+  },
+  {
+    "action": "added",
+    "slug": "sandbox0",
+    "name": "Sandbox0",
+    "note": "Managed cloud sandboxes for agent code — REST API + CLI.",
+    "date": "2026-10-24"
+  },
+  {
     "action": "updated",
     "slug": "vertex-ai-agent-builder",
     "name": "Gemini Enterprise Agent Platform",
