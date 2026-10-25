@@ -3,6 +3,7 @@ import * as path from 'path';
 import { describe, it, expect } from 'vitest';
 import { browseHref, scoreAgent, searchAgents } from '../lib/search';
 import type { Agent, Category } from '../lib/types';
+import { truncate } from '../lib/utils';
 
 function makeAgent(overrides: Partial<Agent> = {}): Agent {
   return {
@@ -203,6 +204,101 @@ describe('synonyms', () => {
   });
 });
 
+describe('access words also match names', () => {
+  // The MCP SDKs are reached through an API or CLI, not as MCP servers, but
+  // "MCP" is in their names.
+  const sdk = makeAgent({
+    slug: 'mcp-python-sdk',
+    name: 'MCP Python SDK',
+    description: 'Official Python SDK for building Model Context Protocol servers and clients.',
+    accessMethods: ['api', 'cli'],
+  });
+  const fastmcp = makeAgent({
+    slug: 'fastmcp',
+    name: 'FastMCP',
+    description: 'A Pythonic framework for MCP servers.',
+    accessMethods: ['mcp'],
+  });
+  const repl = makeAgent({
+    slug: 'python-repl',
+    name: 'Python REPL Agent',
+    description: 'Runs Python in a sandbox.',
+    accessMethods: ['cli'],
+  });
+  const runTogether = makeAgent({
+    slug: 'agentmcp-hub',
+    name: 'AgentMCP Hub',
+    description: 'A Python hub for agents.',
+    accessMethods: ['api'],
+  });
+  const list = [repl, runTogether, fastmcp, sdk];
+
+  it('"mcp python" finds a listing with MCP in its name but no MCP access', () => {
+    const results = searchAgents(list, 'mcp python');
+    expect(results[0].slug).toBe('mcp-python-sdk');
+    expect(slugs(results).sort()).toEqual(['fastmcp', 'mcp-python-sdk']);
+    expect(scoreAgent(sdk, 'mcp python')).toBeGreaterThan(0);
+  });
+
+  it('the name must contain the access word as a whole word', () => {
+    expect(scoreAgent(runTogether, 'mcp python')).toBe(0);
+    expect(slugs(searchAgents(list, 'mcp'))).toEqual(['fastmcp', 'mcp-python-sdk']);
+  });
+
+  it('access chips stay strict', () => {
+    expect(slugs(searchAgents(list, 'python', ['mcp']))).toEqual(['fastmcp']);
+    expect(slugs(searchAgents(list, 'mcp python', ['mcp']))).toEqual(['fastmcp']);
+    expect(slugs(searchAgents(list, '', ['mcp']))).toEqual(['fastmcp']);
+  });
+
+  it('"constructor" is a search word, not an access method', () => {
+    const builder = makeAgent({ slug: 'builder', name: 'Constructor', accessMethods: ['api'] });
+    expect(slugs(searchAgents([builder, repl], 'constructor'))).toEqual(['builder']);
+  });
+});
+
+describe('"sql" expansion', () => {
+  const mysql = makeAgent({ slug: 'db-bridge', name: 'DB Bridge', description: 'Query MySQL databases in plain English.' });
+  const nosql = makeAgent({ slug: 'doc-helper', name: 'Doc Helper', description: 'Assistant for NoSQL document stores.' });
+  const sqlite = makeAgent({ slug: 'lite-notes', name: 'Lite Notes', description: 'Notes kept in SQLite.' });
+  const mssql = makeAgent({ slug: 'ms-db', name: 'MS DB', description: 'Talks to MSSQL servers.' });
+  const plain = makeAgent({ slug: 'sql-runner', name: 'Runner', description: 'Runs SQL queries.' });
+  const other = makeAgent({ slug: 'notes', name: 'Notes', description: 'Takes quick notes.' });
+  const list = [other, mysql, nosql, sqlite, mssql, plain];
+
+  it('"sql" finds MySQL, NoSQL, SQLite and MSSQL tools as well as plain SQL ones', () => {
+    expect(slugs(searchAgents(list, 'sql')).sort()).toEqual(['db-bridge', 'doc-helper', 'lite-notes', 'ms-db', 'sql-runner']);
+  });
+
+  it('"sql" finds PostgreSQL listings', () => {
+    expect(slugs(searchAgents(catalog, 'sql')).sort()).toEqual(['aiven-mcp', 'supabase-mcp']);
+  });
+
+  it('is one-way: "mysql" does not find SQLite or NoSQL tools', () => {
+    expect(slugs(searchAgents(list, 'mysql'))).toEqual(['db-bridge']);
+  });
+
+  it('leaves the postgres synonyms alone', () => {
+    expect(slugs(searchAgents(catalog, 'postgresql'))).toEqual(slugs(searchAgents(catalog, 'postgres')));
+  });
+});
+
+describe('truncate (card descriptions)', () => {
+  it('cuts at the last word boundary before the limit, keeping the ellipsis', () => {
+    expect(truncate('The quick brown fox jumps over the lazy dog', 20)).toBe('The quick brown fox…');
+    expect(truncate('The quick brown fox jumps over the lazy dog', 18)).toBe('The quick brown…');
+  });
+
+  it('drops a dangling separator before the ellipsis', () => {
+    expect(truncate('Search, filter, and export data', 17)).toBe('Search, filter…');
+    expect(truncate('Fast setup — then deploy anywhere', 14)).toBe('Fast setup…');
+  });
+
+  it('leaves text within the limit alone', () => {
+    expect(truncate('Short enough.', 120)).toBe('Short enough.');
+  });
+});
+
 describe('edge cases', () => {
   it('an empty query returns everything in the incoming order', () => {
     expect(slugs(searchAgents(catalog, '   '))).toEqual(slugs(catalog));
@@ -274,12 +370,38 @@ describe('against content/agents', () => {
     const results = searchAgents(agents, 'mcp server for postgres');
     expect(results.length).toBeGreaterThan(0);
     expect(results.length).toBeLessThan(40);
-    expect(results.every((a) => a.accessMethods.includes('mcp'))).toBe(true);
+    // MCP access, or "MCP" as a word in the name.
+    expect(results.every((a) => a.accessMethods.includes('mcp') || /\bmcp\b/i.test(a.name))).toBe(true);
     expect(/postgres/i.test(results[0].name)).toBe(true);
   });
 
   it('"capital" and "climate" no longer match hundreds of listings', () => {
     expect(searchAgents(agents, 'capital').length).toBeLessThan(20);
     expect(searchAgents(agents, 'climate').length).toBeLessThan(20);
+  });
+
+  const has = (slug: string) => agents.some((a) => a.slug === slug);
+
+  it.skipIf(!has('mcp-python-sdk'))('"mcp python" finds the MCP Python SDK', () => {
+    expect(searchAgents(agents, 'mcp python')[0].slug).toBe('mcp-python-sdk');
+  });
+
+  it('"sql" finds a listing that only mentions MySQL', () => {
+    const results = searchAgents(agents, 'sql');
+    expect(results.some((a) => /mysql/i.test(a.description) && !/sql/i.test(a.name))).toBe(true);
+  });
+
+  it('truncated card descriptions end on a whole word', () => {
+    const isWordChar = (c: string | undefined) => !!c && /[\p{L}\p{N}]/u.test(c);
+    for (const { description } of agents) {
+      const out = truncate(description, 120);
+      expect(out.length).toBeLessThanOrEqual(120);
+      if (out === description) continue;
+      expect(out.endsWith('…')).toBe(true);
+      const kept = out.slice(0, -1);
+      expect(description.startsWith(kept)).toBe(true);
+      // Not cut mid-word: a word character never sits on both sides of the cut.
+      expect(isWordChar(kept.at(-1)) && isWordChar(description[kept.length])).toBe(false);
+    }
   });
 });
