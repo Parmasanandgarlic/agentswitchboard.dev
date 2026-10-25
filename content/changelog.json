@@ -1,5 +1,404 @@
 [
   {
+    "action": "removed",
+    "slug": "midjourney",
+    "name": "Midjourney",
+    "note": "No programmatic access: Midjourney states it does not provide an API and prohibits automation, so it fails the \"not just a web UI\" bar",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "removed",
+    "slug": "smithery",
+    "name": "Smithery",
+    "note": "Rule 4 (no competing directories): an MCP registry whose product is an index of other people's servers",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "agentswitchboard",
+    "name": "Agent Switchboard",
+    "note": "description updated",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "aamarva",
+    "name": "AAMARVA",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "agent-utilities",
+    "name": "Agent Utilities",
+    "note": "Verified: URLs load, access method declared, GitHub repo live",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "agentcouch",
+    "name": "AgentCouch",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "ai-for-database",
+    "name": "AI for Database",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "aidata-broker",
+    "name": "AIData.Broker",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "aitraining-jobs",
+    "name": "AITraining.jobs",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "artifact-council",
+    "name": "Artifact Council",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "arvow",
+    "name": "Arvow",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "clify",
+    "name": "Clify",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "clipmyapp",
+    "name": "ClipMyApp",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "cosvoice",
+    "name": "CosVoice",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "crontinel",
+    "name": "Crontinel",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "fleeting-chat",
+    "name": "fleeting.chat",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "flexqueries",
+    "name": "FlexQueries",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "founden",
+    "name": "Founden",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "fungsi-id-mcp",
+    "name": "Fungsi.id MCP",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "geardex",
+    "name": "GearDex",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "geoloods",
+    "name": "Geoloods",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "herohunt-ai",
+    "name": "HeroHunt.ai",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "hol-guard",
+    "name": "HOL Guard",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "hourtick",
+    "name": "Hourtick",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "ilook",
+    "name": "iLook",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "mangatranslate",
+    "name": "MangaTranslate",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "menlo-insurance-mcp",
+    "name": "Menlo Insurance MCP",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "neurakeep",
+    "name": "NeuraKeep",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "nolizi-calendar",
+    "name": "Nolizi Calendar",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "northstar-trustrail-acceptance-checker",
+    "name": "northstar-trustrail Acceptance Checker",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "one-workrr",
+    "name": "ONE",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "openagentforum",
+    "name": "OpenAgentForum",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "placement-api",
+    "name": "Placement API",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "polyphemus",
+    "name": "Polyphemus (Eye.Art)",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "praesidia",
+    "name": "Praesidia",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "pragor",
+    "name": "Pragor",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "revdoku",
+    "name": "Revdoku",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "rival-ads",
+    "name": "Rival Ads",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "robylon",
+    "name": "Robylon",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "sandbox0",
+    "name": "Sandbox0",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "skaleagents",
+    "name": "SkaleAgents",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "sniffington",
+    "name": "Sniffington",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "superagnt",
+    "name": "superagnt_",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "swarmmemo",
+    "name": "SwarmMemo",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "taskfolk",
+    "name": "Taskfolk",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "unquant",
+    "name": "Unquant",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "vellm-mcp",
+    "name": "Vellm MCP",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "vidmoat",
+    "name": "Vidmoat",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "whooshly",
+    "name": "Whooshly",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "xquik",
+    "name": "Xquik",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "zeroshot",
+    "name": "Zeroshot",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "zovo-invoice-mcp",
+    "name": "Zovo Invoice MCP",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "ada",
+    "name": "Ada",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "contentful",
+    "name": "Contentful",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "socket-security",
+    "name": "Socket Security",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "upwork-mcp",
+    "name": "Upwork MCP Server",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "wso2-agent-manager",
+    "name": "WSO2 Agent Manager",
+    "note": "Verified: URLs load, access method declared",
+    "date": "2026-10-25"
+  },
+  {
     "action": "added",
     "slug": "ai-for-database",
     "name": "AI for Database",
