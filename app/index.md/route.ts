@@ -7,7 +7,7 @@ import { FEATURED_DEFINITION, OFFICIAL_DEFINITION } from '@/lib/public-api';
  * Markdown twin of the homepage.
  *
  * Reachable directly at /index.md, and served for `/` when a client asks for
- * text/markdown via Accept (see middleware.ts). Kept deliberately short: an
+ * text/markdown via Accept (see proxy.ts). Kept deliberately short: an
  * agent that wants the whole catalog should follow the links to /agents.json
  * or the MCP server rather than scrape prose.
  *

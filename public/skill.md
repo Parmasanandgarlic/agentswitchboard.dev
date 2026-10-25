@@ -1,6 +1,6 @@
 ---
 name: agent-switchboard
-description: Search Agent Switchboard, a public directory of vetted AI agents, MCP servers, and agentic developer tools. Use when the user asks to find an agent or tool that does X, compare listed products, look up a listing by name, or list directory categories.
+description: Search Agent Switchboard, a public, curated directory of AI agents, MCP servers, and agentic developer tools. Use when the user asks to find an agent or tool that does X, compare listed products, look up a listing by name, or list directory categories.
 ---
 
 # Agent Switchboard

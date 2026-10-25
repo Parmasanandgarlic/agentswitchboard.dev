@@ -128,6 +128,10 @@ function main() {
   // a vendor with many real products earns many entries — but large clusters are
   // where suite-splitting hides, so surface them for a human to eyeball.
   const byProvider = new Map<string, string[]>();
+  // Two published listings pointing at the same agentUrl are usually one product
+  // listed twice (the fx / fx-agent case). Monorepos legitimately host several
+  // products at one URL, so this is advisory, not a violation.
+  const byAgentUrl = new Map<string, string[]>();
 
   // Auxiliary content files aren't schema-validated, but they ARE parsed at
   // build time (e.g. /changelog does JSON.parse on changelog.json). A syntax
@@ -178,6 +182,8 @@ function main() {
     if (result.data.status === 'published') {
       const prov = result.data.providerName;
       byProvider.set(prov, [...(byProvider.get(prov) ?? []), slug]);
+      const url = result.data.agentUrl.replace(/\/+$/, '').toLowerCase();
+      byAgentUrl.set(url, [...(byAgentUrl.get(url) ?? []), slug]);
     }
 
     // Official needs evidence: the product URL must sit on exactly one
@@ -237,6 +243,14 @@ function main() {
     console.log(
       `ℹ️  ${clusters.length} provider(s) with 4+ listings — check none is one product split across endpoints (CONTRIBUTING rule 2):\n   ` +
         clusters.map(([p, s2]) => `${p} (${s2.length}): ${s2.slice(0, 6).join(', ')}${s2.length > 6 ? ', …' : ''}`).join('\n   ')
+    );
+  }
+
+  const sharedUrls = [...byAgentUrl.entries()].filter(([, slugs]) => slugs.length > 1);
+  if (sharedUrls.length) {
+    console.log(
+      `ℹ️  ${sharedUrls.length} agentUrl(s) shared by more than one published listing — confirm each is a separate product, not a duplicate:\n   ` +
+        sharedUrls.map(([u, s2]) => `${u}: ${s2.join(', ')}`).join('\n   ')
     );
   }
 

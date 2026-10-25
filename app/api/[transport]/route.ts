@@ -71,7 +71,7 @@ const handler = createMcpHandler(
       {
         title: 'Search Agents',
         description:
-          'Search the Agent Switchboard directory of vetted AI agents, MCP servers, and agentic tools. ' +
+          'Search the curated Agent Switchboard directory of AI agents, MCP servers, and agentic tools. ' +
           'Filter by category slug, access methods, and/or official (first-party listings from major vendors). ' +
           LABELS,
         inputSchema: {
