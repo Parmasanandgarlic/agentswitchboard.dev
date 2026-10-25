@@ -62,12 +62,12 @@
   "supportsPushNotifications": true,
   "status": "published",
   "featured": false,
-  "verified": false,
+  "verified": true,
   "tier": "free",
   "discoveredBy": "manual",
   "accessMethods": [
     "mcp"
   ],
   "createdAt": "2026-10-24T00:00:00.000Z",
-  "updatedAt": "2026-10-24T00:00:00.000Z"
+  "updatedAt": "2026-10-25T01:16:46.687Z"
 }
