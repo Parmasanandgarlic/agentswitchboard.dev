@@ -1,6 +1,34 @@
 [
   {
     "action": "removed",
+    "slug": "fx-agent",
+    "name": "fx",
+    "note": "Duplicate of vercel-fx: the same product (fx.sh, Vercel Labs, github.com/vercel-labs/fx), listed twice. vercel-fx stays, with the correct provider and skills",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "ball-ranks",
+    "name": "Ball Ranks Fantasy Sports",
+    "note": "Verified: URLs load, MCP initialize handshake succeeds, public REST API responds",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "objekts-production-desk",
+    "name": "objekts Production Desk",
+    "note": "Verified: URLs load, MCP initialize handshake succeeds",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "updated",
+    "slug": "threadkeep",
+    "name": "ThreadKeep",
+    "note": "Verified: URLs load, MCP initialize handshake succeeds, HTTP API answers with an auth challenge",
+    "date": "2026-10-25"
+  },
+  {
+    "action": "removed",
     "slug": "midjourney",
     "name": "Midjourney",
     "note": "No programmatic access: Midjourney states it does not provide an API and prohibits automation, so it fails the \"not just a web UI\" bar",

@@ -52,9 +52,10 @@ type AccessMethod = Agent['accessMethods'][number];
 
 /**
  * Query words that name an access method. A query word that equals one of
- * these exactly is a filter (the same as clicking the chip), not a text
- * match, so "capital" and "climate" never match because they contain
- * "api" or "cli".
+ * these exactly is a filter, not a text match, so "capital" and "climate"
+ * never match because they contain "api" or "cli". Unlike a chip, the word
+ * also lets through a listing whose name has it as a whole word, so
+ * "mcp python" finds the MCP Python SDK, whose access is API and CLI.
  */
 const ACCESS_ALIASES: Record<string, AccessMethod> = {
   mcp: 'mcp',
@@ -63,6 +64,11 @@ const ACCESS_ALIASES: Record<string, AccessMethod> = {
   extension: 'browser-extension',
   'browser-extension': 'browser-extension',
 };
+
+/** Own keys only, so "constructor" is a search word, not an access method. */
+function accessAlias(word: string): AccessMethod | undefined {
+  return Object.prototype.hasOwnProperty.call(ACCESS_ALIASES, word) ? ACCESS_ALIASES[word] : undefined;
+}
 
 /** Filler words in natural queries ("an mcp server for postgres"). */
 const STOPWORDS = new Set([
@@ -79,9 +85,22 @@ const SYNONYM_GROUPS = [
   ['typescript', 'ts'],
 ];
 
+/**
+ * One-way expansions: the word also matches listings that use any of these,
+ * but not the reverse, so "sql" finds MySQL and SQLite tools while "mysql"
+ * does not find SQLite ones. ("sql" alone only matches at a word start, which
+ * misses "MySQL" and "NoSQL" in descriptions.)
+ */
+const EXPANSIONS: Record<string, string[]> = {
+  sql: ['mysql', 'postgresql', 'sqlite', 'nosql', 'mssql'],
+};
+
 const SYNONYMS = new Map<string, string[]>(
   SYNONYM_GROUPS.flatMap((group) => group.map((word): [string, string[]] => [word, group]))
 );
+for (const [word, more] of Object.entries(EXPANSIONS)) {
+  SYNONYMS.set(word, [...new Set([...(SYNONYMS.get(word) ?? [word]), ...more])]);
+}
 
 // Letters and digits in any script are word characters. Built with
 // new RegExp so the 'u'-flag syntax isn't checked against the ES2017 target.
@@ -112,6 +131,19 @@ function makeVariant(word: string): Variant {
   };
 }
 
+/** Matches `word` as a whole word: no letter or digit right before or after it. */
+function wholeWord(word: string): RegExp {
+  const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?:^|${NOT_WORD})${escaped}(?=${NOT_WORD}|$)`, 'u');
+}
+
+/** An access method named in the query, with the query words that named it. */
+interface QueryAccess {
+  method: AccessMethod;
+  /** The naming words as whole words, for the name check. */
+  inName: RegExp[];
+}
+
 interface ParsedQuery {
   /** The whole query, lowercased, with single spaces. */
   phrase: string;
@@ -119,8 +151,11 @@ interface ParsedQuery {
   wordCount: number;
   /** Words left after filters and stopwords, each with its synonyms. Every one must match. */
   terms: Variant[][];
-  /** Access methods named in the query; a listing must have all of them. */
-  access: AccessMethod[];
+  /**
+   * Access methods named in the query. A listing passes each one if it has
+   * the method or its name contains the word as a whole word.
+   */
+  access: QueryAccess[];
 }
 
 function parseQuery(query: string): ParsedQuery {
@@ -134,13 +169,15 @@ function parseQuery(query: string): ParsedQuery {
     ),
   ];
 
-  const access: AccessMethod[] = [];
+  const access: QueryAccess[] = [];
   const kept: string[] = [];
   const dropped: string[] = [];
   for (const w of words) {
-    const method = ACCESS_ALIASES[w];
+    const method = accessAlias(w);
     if (method) {
-      if (!access.includes(method)) access.push(method);
+      const seen = access.find((a) => a.method === method);
+      if (seen) seen.inName.push(wholeWord(w));
+      else access.push({ method, inName: [wholeWord(w)] });
     } else if (STOPWORDS.has(w)) {
       dropped.push(w);
     } else {
@@ -222,9 +259,19 @@ function scoreTerm(h: Haystack, variants: Variant[]): number {
   return score;
 }
 
-function scoreParsed(agent: Agent, parsed: ParsedQuery, access: string[]): number {
+/**
+ * `chips` are the access filters picked in the UI and are strict: the
+ * listing must have every one. Access words typed in the query are looser
+ * (see ParsedQuery.access).
+ */
+function scoreParsed(agent: Agent, parsed: ParsedQuery, chips: string[]): number {
   const methods: string[] = agent.accessMethods ?? [];
-  if (!access.every((m) => methods.includes(m))) return 0;
+  if (!chips.every((m) => methods.includes(m))) return 0;
+  if (parsed.access.length > 0) {
+    const name = typeof agent.name === 'string' ? agent.name.toLowerCase() : '';
+    const passes = (a: QueryAccess) => methods.includes(a.method) || a.inName.some((re) => re.test(name));
+    if (!parsed.access.every(passes)) return 0;
+  }
   if (parsed.terms.length === 0) return 1;
 
   const h = haystackOf(agent);
@@ -248,16 +295,17 @@ function scoreParsed(agent: Agent, parsed: ParsedQuery, access: string[]): numbe
  * match; an empty query scores 1 (neutral).
  *
  * The query is split into words. A word that names an access method
- * ("mcp", "api", "cli", "extension") is a filter: an agent without that
- * method scores 0. Stopwords ("for", "server", "tools", ...) are dropped.
- * Every remaining word, or one of its synonyms (postgres/postgresql/pg,
- * k8s/kubernetes, gh/github, js/javascript, ts/typescript), must match
- * some field; the score is the sum of the per-word scores (see scoreTerm).
+ * ("mcp", "api", "cli", "extension") is a filter: an agent scores 0 unless
+ * it has that method or its name contains the word as a whole word.
+ * Stopwords ("for", "server", "tools", ...) are dropped. Every remaining
+ * word, or one of its synonyms (postgres/postgresql/pg, k8s/kubernetes,
+ * gh/github, js/javascript, ts/typescript; "sql" also matches mysql,
+ * postgresql, sqlite, nosql and mssql), must match some field; the score is
+ * the sum of the per-word scores (see scoreTerm).
  */
 export function scoreAgent(agent: Agent, query: string): number {
   if (!query.trim()) return 1;
-  const parsed = parseQuery(query);
-  return scoreParsed(agent, parsed, parsed.access);
+  return scoreParsed(agent, parseQuery(query), []);
 }
 
 export function searchAgents(
@@ -266,21 +314,20 @@ export function searchAgents(
   filterAccessMethods?: string[]
 ): Agent[] {
   const parsed = parseQuery(query);
-  // Chip filters and access words in the query combine (AND).
-  const access = [
-    ...new Set([
-      ...(filterAccessMethods ?? []).map((m) => ACCESS_ALIASES[m.toLowerCase()] ?? m),
-      ...parsed.access,
-    ]),
+  // Chip filters (strict) and access words in the query combine (AND).
+  const chips = [
+    ...new Set((filterAccessMethods ?? []).map((m) => accessAlias(m.toLowerCase()) ?? m)),
   ];
 
   // Nothing to rank by: keep the incoming order.
   if (parsed.terms.length === 0) {
-    return access.length === 0 ? agents : agents.filter((a) => scoreParsed(a, parsed, access) > 0);
+    return chips.length === 0 && parsed.access.length === 0
+      ? agents
+      : agents.filter((a) => scoreParsed(a, parsed, chips) > 0);
   }
 
   return agents
-    .map((agent) => ({ agent, score: scoreParsed(agent, parsed, access) }))
+    .map((agent) => ({ agent, score: scoreParsed(agent, parsed, chips) }))
     .filter(({ score }) => score > 0)
     .sort((a, b) => b.score - a.score)
     .map(({ agent }) => agent);
