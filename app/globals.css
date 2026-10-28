@@ -83,7 +83,7 @@ html.light {
 
   --blue: #2255dd;
   --blue-glow: rgba(34, 85, 221, 0.08);
-  --amber: #cc7700;
+  --amber: #8f5400; /* 4.5:1+ as text on its own tint and on white */
   --amber-glow: rgba(204, 119, 0, 0.08);
   --rose: #cc1133;
   --rose-glow: rgba(204, 17, 51, 0.08);
