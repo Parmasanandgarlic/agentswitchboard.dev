@@ -1,5 +1,26 @@
 [
   {
+    "action": "added",
+    "slug": "barnir-hired",
+    "name": "Barnir Hired",
+    "note": "Read-only MCP for technical-GTM job fit. Sponsored placement.",
+    "date": "2026-10-28"
+  },
+  {
+    "action": "removed",
+    "slug": "free-claude-code",
+    "name": "free-claude-code",
+    "note": "Rule 1: a static-config gateway to other providers, not routing intelligence.",
+    "date": "2026-10-28"
+  },
+  {
+    "action": "updated",
+    "slug": "manufact",
+    "name": "Manufact",
+    "note": "Re-described as the managed cloud, distinct from the mcp-use framework listing.",
+    "date": "2026-10-28"
+  },
+  {
     "action": "removed",
     "slug": "fx-agent",
     "name": "fx",
